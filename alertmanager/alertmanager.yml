@@ -1,0 +1,15 @@
+global:
+  resolve_timeout: 5m
+
+route:
+  group_by: ['alertname']
+  group_wait: 30s
+  group_interval: 5m
+  repeat_interval: 3h
+  receiver: 'line-alerts'
+
+receivers:
+  - name: 'line-alerts'
+    webhook_configs:
+      - url: 'http://areadiv.com/demo9/send.php?pram={{ $labels.instance }}'
+        send_resolved: true
