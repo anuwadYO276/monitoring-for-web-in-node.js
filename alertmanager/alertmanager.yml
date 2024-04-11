@@ -11,5 +11,5 @@ route:
 receivers:
   - name: 'line-alerts'
     webhook_configs:
-      - url: 'http://areadiv.com/demo9/send.php?pram={{ $labels.instance }}'
+      - url: 'http://areadiv.com/demo9/send.php?pram=1111'
         send_resolved: true
