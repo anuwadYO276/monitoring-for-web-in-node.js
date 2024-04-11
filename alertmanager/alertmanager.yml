@@ -2,14 +2,17 @@ global:
   resolve_timeout: 5m
 
 route:
-  group_by: ['alertname']
+  group_by: ['alertname', 'group', 'instance', 'job', 'service', 'severity']
   group_wait: 30s
-  group_interval: 5m
-  repeat_interval: 3h
+  group_interval: 30s
+  repeat_interval: 30s
   receiver: 'line-alerts'
 
 receivers:
-  - name: 'line-alerts'
-    webhook_configs:
-      - url: 'http://areadiv.com/demo9/send.php?pram=1111'
-        send_resolved: true
+- name: 'line-alerts'
+  webhook_configs:
+  - url: 'http://localhost/anuwad/'
+    send_resolved: true
+
+
+    

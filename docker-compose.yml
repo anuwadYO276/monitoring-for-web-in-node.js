@@ -52,19 +52,6 @@ services:
       - 8080 
     networks:
       - monitoring
-  # alertmanager:
-  #   image: prom/alertmanager:v0.21.0
-  #   container_name: alertmanager
-  #   volumes:
-  #     - ./alertmanager/alertmanager.yml:/alertmanager/alertmanager.yml
-  #   ports:
-  #     - 9093:9093
-  #   command: 
-  #     - '--config.file=/alertmanager/alertmanager.yml'
-  #   expose:
-  #     - 9093
-  #   networks:
-  #     - monitoring
   alertmanager:
     image: prom/alertmanager:v0.21.0
     container_name: alertmanager
@@ -76,6 +63,15 @@ services:
       - '--config.file=/alertmanager/alertmanager.yml'
     expose:
       - "9093"
+    networks:
+      - monitoring
+  line-notify:
+    image: line-notify-image
+    container_name: line-notify
+    ports:
+      - 8089:8080
+    expose:
+      - 8080
     networks:
       - monitoring
 
