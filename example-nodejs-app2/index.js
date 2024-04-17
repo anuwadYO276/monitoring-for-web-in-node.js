@@ -60,6 +60,10 @@ const server = http.createServer(async (req, res) => {
 });
 
 server.listen(8080, () => {
+  const data = 'Port 8081 is up on 10.1.29.12:8081';
+  axios.get('http://areadiv.com/demo9/send.php?pram=' + data).then(response => {
+    console.log('Send data to line success');
+  });
   console.log(
     "Grafana is running on http://localhost:3000, Server is running on http://localhost:8080, metrics are exposed on http://localhost:8080/metrics"
   );
