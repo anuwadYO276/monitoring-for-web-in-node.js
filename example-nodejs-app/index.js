@@ -1,7 +1,7 @@
 const http = require("http");
 const url = require("url");
 const client = require("prom-client");
-
+const axios = require('axios');
 const register = new client.Registry();
 
 register.setDefaultLabels({
