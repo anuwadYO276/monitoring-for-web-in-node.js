@@ -1,13 +1,23 @@
 groups:
   - name: example-nodejs-app
     rules:
-      - alert: Port8080Down
+      - alert: Status Port 8080
         expr: up{job="example-nodejs-app"} == 0
-        for: 30s
+        for: 1m
         labels:
           severity: critical
         annotations:
           summary: "Port 8080 is down on {{ $labels.instance }}"
           description: "Port 8080 is down on {{ $labels.instance }}. The job '{{ $labels.job }}' has been unavailable for more than 1 minute."
-    
-
+  
+  - name: example-nodejs-app2
+    rules:
+      - alert: Status Port 8081
+        expr: up{job="example-nodejs-app2"} == 0
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Port 8081 is down on {{ $labels.instance }}"
+          description: "Port 8081 is down on {{ $labels.instance }}. The job '{{ $labels.job }}' has been unavailable for more than 1 minute."
+                 

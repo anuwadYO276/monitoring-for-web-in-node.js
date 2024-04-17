@@ -1,18 +1,19 @@
 global:
-  resolve_timeout: 5m
+  resolve_timeout: 1m
 
 route:
   group_by: ['alertname', 'group', 'instance', 'job', 'service', 'severity']
   group_wait: 30s
-  group_interval: 30s
-  repeat_interval: 30s
+  group_interval: 3m
+  repeat_interval: 5m
   receiver: 'line-alerts'
 
 receivers:
 - name: 'line-alerts'
   webhook_configs:
-  - url: 'http://localhost/anuwad/'
+  - url: 'https://e052-223-27-201-20.ngrok-free.app'
     send_resolved: true
+    
 
 
     

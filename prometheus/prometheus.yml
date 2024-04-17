@@ -34,5 +34,11 @@ scrape_configs:
         labels:
           service: "example-nodejs-app"
           group: "example-nodejs-app"
+  - job_name: "example-nodejs-app2"
+    static_configs:
+      - targets: ['10.1.29.12:8081']
+        labels:
+          service: "example-nodejs-app2"
+          group: "example-nodejs-app2"
 
 

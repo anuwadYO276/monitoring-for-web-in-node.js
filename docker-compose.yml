@@ -65,15 +65,6 @@ services:
       - "9093"
     networks:
       - monitoring
-  line-notify:
-    image: line-notify-image
-    container_name: line-notify
-    ports:
-      - 8089:8080
-    expose:
-      - 8080
-    networks:
-      - monitoring
 
       
 

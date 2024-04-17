@@ -1,23 +1,23 @@
+# Stage 1: Installer
 FROM node:13-alpine3.11 AS installer
 
 RUN mkdir /app
 WORKDIR /app
 
-COPY package.json /app/
-COPY package-lock.json /app/
+COPY package.json package-lock.json /app/
 
-RUN npm install
+RUN npm install --production
 
+# Stage 2: Final Image
 FROM node:13-alpine3.11
 
 RUN mkdir /app
 WORKDIR /app
 
-COPY index.js /app
+COPY --from=installer /app .
 
-COPY --from=installer /app/package.json .
-COPY --from=installer /app/node_modules ./node_modules
+COPY index.js /app/
 
-EXPOSE 8080
+EXPOSE 8082
 
-CMD npm start
+CMD ["npm", "start"]
