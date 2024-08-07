@@ -34,24 +34,6 @@ services:
       - 3000
     networks:
       - monitoring
-  example-nodejs-app:
-    build:
-      context: example-nodejs-app
-    ports:
-      - 8080:8080
-    expose:
-      - 8080
-    networks:
-      - monitoring
-  example-nodejs-app2: 
-    build:
-      context: example-nodejs-app2
-    ports:
-      - 8081:8080
-    expose:
-      - 8080 
-    networks:
-      - monitoring
   alertmanager:
     image: prom/alertmanager:v0.21.0
     container_name: alertmanager
