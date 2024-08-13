@@ -1,19 +1,15 @@
 global:
-  resolve_timeout: 1m
+  resolve_timeout: 5m
 
 route:
-  group_by: ['alertname', 'group', 'instance', 'job', 'service', 'severity']
-  group_wait: 30s
-  group_interval: 3m
-  repeat_interval: 5m
-  receiver: 'line-alerts'
+  receiver: 'webhook-receiver'
+  group_by: ['alertname']
+  group_wait: 10s
+  group_interval: 5m
+  repeat_interval: 1h
 
 receivers:
-- name: 'line-alerts'
-  webhook_configs:
-  - url: 'https://e052-223-27-201-20.ngrok-free.app'
-    send_resolved: true
-    
-
-
-    
+  - name: 'webhook-receiver'
+    webhook_configs:
+      - url: 'http://areadiv.com/monitoring/index.php'
+        send_resolved: true
