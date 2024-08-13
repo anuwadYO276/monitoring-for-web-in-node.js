@@ -14,8 +14,6 @@ scrape_configs:
   - job_name: "nextjs-metrics"
     static_configs:
       - targets:
-        - 'http://localhost:3001/api/metrics'
+        - 'https://7b90-49-231-1-82.ngrok-free.app/api/metrics'
         labels:
           service: "nextjs-app"
-# http://localhost:3001
-# 'https://bcfe-115-31-145-24.ngrok-free.app/api/metrics'
