@@ -1,10 +1,12 @@
-version: "2.1"
+version: "3.8"
 networks:
   monitoring:
     driver: bridge
+
 volumes:
   prometheus_data: {}
   grafana_data: {}
+
 services:
   prometheus:
     image: prom/prometheus:v2.20.1
@@ -13,11 +15,10 @@ services:
       - ./prometheus:/etc/prometheus
       - prometheus_data:/prometheus
     ports:
-      - 9095:9090
-    expose:
-      - 9095
+      - "9090:9090"
     networks:
       - monitoring
+
   grafana:
     image: grafana/grafana:7.1.5
     container_name: grafana
@@ -29,11 +30,10 @@ services:
       - GF_AUTH_ANONYMOUS_ENABLED=true
       - GF_AUTH_ANONYMOUS_ORG_ROLE=Admin
     ports:
-      - 3000:3000
-    expose:
-      - 3000
+      - "3000:3000"
     networks:
       - monitoring
+
   alertmanager:
     image: prom/alertmanager:v0.21.0
     container_name: alertmanager
@@ -43,10 +43,5 @@ services:
       - "9093:9093"
     command: 
       - '--config.file=/alertmanager/alertmanager.yml'
-    expose:
-      - "9093"
     networks:
       - monitoring
-
-      
-

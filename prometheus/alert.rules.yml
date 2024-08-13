@@ -1,23 +1,29 @@
 groups:
-  - name: example-nodejs-app
+  - name: monitoring-alerts
     rules:
-      - alert: Status Port 8080
-        expr: up{job="example-nodejs-app"} == 0
-        for: 1m
+      - alert: HighErrorRate
+        expr: rate(http_requests_total{status="500"}[5m]) > 0.05
+        for: 1m  # แจ้งเตือนถ้าอัตราการเกิดข้อผิดพลาดสูงเกิน 5% ติดต่อกัน 1 นาที
         labels:
           severity: critical
         annotations:
-          summary: "Port 8080 is down on {{ $labels.instance }}"
-          description: "Port 8080 is down on {{ $labels.instance }}. The job '{{ $labels.job }}' has been unavailable for more than 1 minute."
-  
-  - name: example-nodejs-app2
-    rules:
-      - alert: Status Port 8081
-        expr: up{job="example-nodejs-app2"} == 0
-        for: 1m
+          summary: "High error rate detected"
+          description: "The error rate is above 5% for the last 1 minute."
+
+      - alert: InstanceDown
+        expr: up == 0
+        for: 1m  # แจ้งเตือนถ้าบริการไม่ทำงานติดต่อกัน 1 นาที
         labels:
           severity: critical
         annotations:
-          summary: "Port 8081 is down on {{ $labels.instance }}"
-          description: "Port 8081 is down on {{ $labels.instance }}. The job '{{ $labels.job }}' has been unavailable for more than 1 minute."
-                 
+          summary: "Instance down"
+          description: "The instance has been down for the last 1 minute."
+
+      - alert: HighLatency
+        expr: avg(rate(http_request_duration_seconds_sum[5m])) by (job) > 1
+        for: 1m  # แจ้งเตือนถ้าความหน่วงเฉลี่ยของคำขอเกิน 1 วินาทีติดต่อกัน 1 นาที
+        labels:
+          severity: warning
+        annotations:
+          summary: "High request latency"
+          description: "The average request duration is above 1 second for the last 1 minute."
