@@ -1,23 +1,20 @@
-FROM node:13-alpine3.11 AS installer
+# ใช้ Node.js image จาก Docker Hub
+FROM node:18
 
-RUN mkdir /app
+# ตั้งค่า working directory ใน container
 WORKDIR /app
 
-COPY package.json /app/
-COPY package-lock.json /app/
+# คัดลอก package.json และ package-lock.json
+COPY package*.json ./
 
+# ติดตั้ง dependencies
 RUN npm install
 
-FROM node:13-alpine3.11
+# คัดลอกโค้ดแอปพลิเคชัน
+COPY . .
 
-RUN mkdir /app
-WORKDIR /app
+# เปิดพอร์ตที่แอปพลิเคชันจะรัน
+EXPOSE 3000
 
-COPY index.js /app
-
-COPY --from=installer /app/package.json .
-COPY --from=installer /app/node_modules ./node_modules
-
-EXPOSE 8080
-
-CMD npm start
+# คำสั่งเริ่มต้นเพื่อรันแอปพลิเคชัน
+CMD ["node", "index.js"]

@@ -45,3 +45,11 @@ services:
       - '--config.file=/alertmanager/alertmanager.yml'
     networks:
       - monitoring
+  
+  example-nodejs-app:
+    image: node-app1:latest
+    container_name: example-nodejs-app
+    ports:
+      - "4723:3000"
+    networks:
+      - monitoring

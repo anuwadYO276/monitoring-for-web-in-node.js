@@ -1,12 +1,12 @@
 global:
-  resolve_timeout: 5m
+  resolve_timeout: 30s
 
 route:
   receiver: 'webhook-receiver'
   group_by: ['alertname']
-  group_wait: 10s
-  group_interval: 5m
-  repeat_interval: 1h
+  group_wait: 3s
+  group_interval: 1m
+  repeat_interval: 1m
 
 receivers:
   - name: 'webhook-receiver'
