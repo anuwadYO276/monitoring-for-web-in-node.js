@@ -1,14 +1,5 @@
 global:
-  scrape_interval: 15s  # ดึงข้อมูลทุก 15 วินาที
-
-alerting:
-  alertmanagers:
-    - static_configs:
-        - targets:
-            - "alertmanager:9093"
-
-rule_files:
-  - alert.rules.yml
+  scrape_interval: 15s  # Scrape every 15 seconds
 
 scrape_configs:
   - job_name: "nextjs-metrics"
@@ -17,3 +8,12 @@ scrape_configs:
         - 'example-nodejs-app:3000'
         labels:
           service: "nextjs-app"
+
+alerting:
+  alertmanagers:
+    - static_configs:
+        - targets:
+            - "alertmanager:9093"
+
+rule_files:
+  - "alert.rules.yml"
