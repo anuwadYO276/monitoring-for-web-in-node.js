@@ -1,12 +1,13 @@
 global:
-  resolve_timeout: 30s
+  resolve_timeout: 30s  # เวลาที่รอการยืนยันว่าเหตุการณ์ได้รับการแก้ไขแล้ว (30 วินาที)
 
 route:
   receiver: 'webhook-receiver'
   group_by: ['alertname']
-  group_wait: 3s
-  group_interval: 1m
-  repeat_interval: 3s 
+  group_wait: 1s  # รอ 1 วินาทีก่อนจะสร้างกลุ่มการแจ้งเตือน
+  group_interval: 3m  # รอ 3 นาทีก่อนส่งการแจ้งเตือนซ้ำในกรณีที่เหตุการณ์ยังคงเกิดขึ้น
+  repeat_interval: 30m  # รอ 30 นาทีก่อนส่งการแจ้งเตือนซ้ำในกรณีที่เหตุการณ์ยังคงเกิดขึ้น
+
 
 receivers:
   - name: 'webhook-receiver'
