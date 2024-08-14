@@ -1,5 +1,6 @@
 global:
-  scrape_interval: 15s  # Scrape every 15 seconds
+  scrape_interval: 1m  # ดึงข้อมูลเมตริกจากแหล่งข้อมูลที่กำหนดทุก ๆ 1 นาที
+  evaluation_interval: 30s  # ทำการประเมินกฎการแจ้งเตือนหรือกฎการประเมินผลต่างๆ ทุก ๆ 30 วินาที
 
 scrape_configs:
   - job_name: "nextjs-metrics"

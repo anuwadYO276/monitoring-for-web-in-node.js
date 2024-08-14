@@ -12,7 +12,7 @@ groups:
 
       - alert: InstanceDown
         expr: up == 0
-        for: 5s  # แจ้งเตือนถ้าบริการไม่ทำงานติดต่อกัน 1 นาที
+        for: 5s  # แจ้งเตือนถ้า instance ล่มเกิน 30 วินาที
         labels:
           severity: critical
         annotations:
