@@ -46,10 +46,22 @@ services:
     networks:
       - monitoring
   
+  line-notify:
+    image: line-notify:latest
+    container_name: line-notify
+    ports:
+      - "1103:3000"
+    volumes:
+      - ./line-notify:/app
+    networks:
+      - monitoring
+  
   example-nodejs-app:
-    image: node-app1:latest
+    image: node-app:latest
     container_name: example-nodejs-app
     ports:
       - "4723:3000"
+    volumes:
+      - ./example-nodejs-app:/app
     networks:
       - monitoring
