@@ -82,12 +82,12 @@ server.listen(3000, () => {
   console.log('Server listening on port 3000');
 
   // Send data to a remote server (ensure port and endpoint are correct)
-  const data = 'Port 3000 is up on 10.1.29.12:3000';
-  axios.get('http://areadiv.com/demo9/send.php?pram=' + encodeURIComponent(data))
-    .then(response => {
-      console.log('Send data to line success');
-    })
-    .catch(error => {
-      console.error('Error sending data to line:', error);
-    });
+  // const data = 'Port 3000 is up on 10.1.29.12:3000';
+  // axios.get('http://areadiv.com/demo9/send.php?pram=' + encodeURIComponent(data))
+  //   .then(response => {
+  //     console.log('Send data to line success');
+  //   })
+  //   .catch(error => {
+  //     console.error('Error sending data to line:', error);
+  //   });
 });
