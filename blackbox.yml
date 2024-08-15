@@ -7,7 +7,7 @@ modules:
       valid_status_codes: [200, 301]  # รหัสสถานะที่ถือว่าถูกต้อง
       method: GET  # วิธีการที่ใช้ในการส่งคำร้องขอ
       headers:
-        User-Agent: "blackbox_exporter"  # หัวข้อ User-Agent สำหรับคำร้องขอ HTTP
+        User-Agent: "blackbox-exporter"  # หัวข้อ User-Agent สำหรับคำร้องขอ HTTP
       fail_if_ssl: false  # ไม่ต้องล้มเหลวหากไม่ใช้ SSL
       fail_if_not_ssl: false  # ไม่ต้องล้มเหลวหากใช้ SSL
       fail_if_matches_regexp: []  # ล้มเหลวหากเนื้อหาตรงกับการแสดงผลตามที่กำหนด
