@@ -65,3 +65,11 @@ services:
       - ./example-nodejs-app:/app
     networks:
       - monitoring
+
+  blackbox-exporter:
+    image: prom/blackbox-exporter:latest
+    container_name: blackbox-exporter
+    ports:
+      - "9115:9115"
+    networks:
+      - monitoring
