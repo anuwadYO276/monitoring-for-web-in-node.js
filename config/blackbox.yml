@@ -1,0 +1,9 @@
+modules:
+  http_check:
+    prober: http_2xx
+    timeout: 10s
+    http:
+      method: GET
+      valid_http_versions: [ "1xx", "2xx", "3xx" ]
+      valid_http_mimes: [ "application/json", "text/html" ]
+      valid_http_status_codes: [ "200", "301" ]

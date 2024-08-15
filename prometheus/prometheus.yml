@@ -13,11 +13,10 @@ scrape_configs:
   - job_name: 'http-check'
     metrics_path: /probe
     params:
-      module: [http_2xx]  # ตรวจสอบว่ามีการตอบกลับ HTTP status 2xx หรือไม่
+      module: [http_check]  # ใช้โมดูล http_check เพื่อตรวจสอบ HTTP status code
     static_configs:
       - targets:
-          - http://10.1.29.17:8090  # URL ที่ต้องการตรวจสอบ
-          - http://10.1.29.17:4723  # URL ที่ต้องการตรวจสอบ
+          - http://10.1.112.122/sdigi_ncrs/login
     relabel_configs:
       - source_labels: [__address__]
         target_label: __param_target
